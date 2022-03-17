@@ -1,0 +1,24 @@
+/* configuração do container que segura os itens */
+.container {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* tamanho minimo para estilizar uma div */
+.minHeight {
+  min-height: 75%;
+}
+
+/* coloca os conteúdos no inicio */
+.start {
+  flex-direction: start;
+}
+
+/* cria colunas */
+.column {
+  flex-direction: column;
+  justify-content: flex-start;
+}
