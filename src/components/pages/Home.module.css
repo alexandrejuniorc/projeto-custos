@@ -1,0 +1,33 @@
+/* container da página home */
+.homeContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4em;
+}
+
+/* titulo da home */
+.homeContainer h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+/* span que está dentro do h1 da home */
+.homeContainer h1 span {
+  color: #ffbb33;
+  padding: 0 0.2em;
+  background-color: #222;
+}
+
+/* parágrafo da home */
+.homeContainer p {
+  margin-bottom: 1.5em;
+  color: #7b7b7b;
+}
+
+/* imagem da home */
+.homeContainer img {
+  width: 350px;
+  padding: 2em 0;
+}

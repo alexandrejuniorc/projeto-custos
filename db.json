@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "name": "sdas",
+      "orcamento": "2321",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "custo": 0,
+      "servicos": [],
+      "id": 1
+    },
+    {
+      "name": "projeto teste",
+      "orcamento": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "custo": 0,
+      "servicos": [],
+      "id": 2
+    },
+    {
+      "name": "teste",
+      "orcamento": "1234",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "custo": 0,
+      "servicos": [],
+      "id": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Infra"
+    },
+    {
+      "id": 2,
+      "name": "Desenvolvimento"
+    },
+    {
+      "id": 3,
+      "name": "Design"
+    },
+    {
+      "id": 4,
+      "name": "Planejamento"
+    }
+  ]
+}

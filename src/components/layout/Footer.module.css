@@ -1,0 +1,41 @@
+/* container do footer */
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 3em;
+  text-align: center;
+}
+
+/* lista */
+.socialList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+/* item da lista */
+.socialList li {
+  margin: 0 1em;
+}
+
+/* hover de cada item da lista que são os svgs */
+.socialList li:hover {
+  color: #ffbb33;
+}
+
+/* icones que foram importados */
+.socialList svg {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* conteúdo do copy right */
+.copyRight {
+  margin-top: 2em;
+}
+
+/* span que está no copy right */
+.copyRight span {
+  font-weight: bold;
+  color: #ffbb33;
+}
