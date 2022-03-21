@@ -1,0 +1,48 @@
+.projectDetails {
+  padding: 2em;
+}
+
+.projectDetails h1,
+.projectDetails h2,
+.projectDetails p {
+  margin-bottom: 0.5em;
+}
+
+.projectDetails h1 {
+  background-color: #222;
+  color: #ffbb33;
+  padding: 0.4em;
+}
+
+.projectDetails span {
+  font-weight: bold;
+}
+
+.detailsContainer,
+.serviceFormContainer {
+  border-bottom: 1px solid #7a7a7a;
+  margin-bottom: 1.2em;
+  padding-bottom: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background-color: #222;
+  color: #fff;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  transition: 0.5s;
+  cursor: pointer;
+  height: 40px;
+  border: none;
+}
+
+.btn:hover {
+  color: #ffbb33;
+}
+
+.projectInfo {
+  width: 100%;
+}

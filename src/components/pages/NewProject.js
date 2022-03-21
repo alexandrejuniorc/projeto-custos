@@ -5,7 +5,7 @@ import styles from './NewProject.module.css';
 const NewProject = () => {
   // HOOK
   // permite fazer redirecionamentos de página
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   function createPost(projeto) {
     // inicializa custos e serviços
@@ -25,7 +25,9 @@ const NewProject = () => {
 
         //redirecionamento
         // quando tiver sucesso na adição do projeto ele irá redirecionar para essa página
-        history('/projects', { message: 'Projeto criado com sucesso!' });
+        navigate('/projects', {
+          state: { message: 'Projeto criado com sucesso!' },
+        });
       })
       .catch((erro) => console.log(erro));
   }
