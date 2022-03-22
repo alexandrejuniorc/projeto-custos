@@ -7,9 +7,33 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
+      "custo": 200,
+      "servicos": [
+        {
+          "name": "teste projeto 1 ",
+          "custo": "100",
+          "description": "teste1",
+          "id": "66795190-5706-41ba-84bf-338944ba24ed"
+        },
+        {
+          "name": "teste projeto 2",
+          "custo": "100",
+          "description": "teste2",
+          "id": "08e76c71-d8a0-4044-9776-f0954397f2b1"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "teste 2",
+      "orcamento": "7000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
       "custo": 0,
       "servicos": [],
-      "id": 1
+      "id": 2
     }
   ],
   "categories": [

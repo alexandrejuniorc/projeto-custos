@@ -1,3 +1,4 @@
+import { parse, v4 as uuidv4 } from 'uuid';
 import React from 'react';
 import styles from './Project.module.css';
 import { useParams } from 'react-router-dom';
@@ -7,15 +8,14 @@ import Container from '../layout/Container';
 import ProjectForm from '../project/ProjectForm';
 import Message from '../layout/Message';
 import ServiceForm from '../service/ServiceForm';
+import ServiceCard from '../service/ServiceCard';
 
 const Project = () => {
   const { id } = useParams(); // utilizado para pegar o id que vem da url
-
   const [project, setProject] = useState([]); // iniciam com um array vazio
-
+  const [services, setServices] = useState([]); // iniciam com um array vazio
   const [showProjectForm, setShowProjectForm] = useState(false); // não exibe inicialmente o formulário do projeto
   const [showServiceForm, setShowServiceForm] = useState(false); // não exibe inicialmente o formulário do projeto
-
   const [message, setMessage] = useState(); // mensagem que irá ser escrita
   const [type, setType] = useState(); // tipo da mensagem
 
@@ -29,6 +29,7 @@ const Project = () => {
         .then((resposta) => resposta.json())
         .then((data) => {
           setProject(data); // tenho meu projeto sendo resgatado do banco pelo parâmetro da url
+          setServices(data.servicos);
         })
         .catch((erro) => console.log(erro));
     }, 500);
@@ -46,7 +47,7 @@ const Project = () => {
       return false;
     }
 
-    fetch(`http://localhost:5000/projects/${id}`, {
+    fetch(`http://localhost:5000/projects/${project.id}`, {
       method: 'PATCH', // método patch só atualiza oq eu mandar pro formulário
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(project), // está mandando os dados como texto
@@ -63,7 +64,68 @@ const Project = () => {
       .catch((erro) => console.log(erro));
   }
 
-  function createService() {}
+  function createService(project) {
+    //ultimo serviço
+    const lastService = project.servicos[project.servicos.length - 1];
+
+    lastService.id = uuidv4(); // cria um id único e irá servir pra renderizar as listas
+
+    const lastServiceCost = lastService.custo;
+
+    //custo atual do projeto
+    const newCost = parseFloat(project.custo) + parseFloat(lastServiceCost);
+
+    //validação de valor máximo
+    if (newCost > parseFloat(project.orcamento)) {
+      setMessage('Orçamento ultrapassado, verifique o valor do serviço');
+      setType('error');
+      project.servico.pop();
+      return false;
+    }
+
+    // adiciona serviço de custo ao total do projeto
+    project.custo = newCost;
+
+    // atualiza projeto
+    fetch(`http://localhost:5000/projects/${project.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(project),
+    })
+      .then((resposta) => resposta.json())
+      .then((data) => {
+        //exibir serviços
+        setShowServiceForm(false); // corta o formulário para que suma caso de sucesso a adesão no projeto
+      })
+      .catch((erro) => console.log(erro));
+  }
+
+  //função para remover serviços
+  function removeService(id, custo) {
+    //atualização de serviços
+    const servicesUpdated = project.servicos.filter(
+      (service) => service.id !== id,
+    ); // só irá ficar os ids que forem iguais ao id do item removido
+
+    //projeto atualizado
+    const projectUpdated = project;
+
+    projectUpdated.servicos = servicesUpdated; // pega o projeto e tira oque eu não quero mais dele
+    projectUpdated.custo = parseFloat(projectUpdated.custo) - parseFloat(custo); // remove o custo do serviço do custo do projeto
+
+    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projectUpdated),
+    })
+      .then((resposta) => resposta.json())
+      .then((data) => {
+        setProject(projectUpdated); // pega o projeto sem o serviço excluido e com o custo a menos
+        setServices(servicesUpdated);
+        setMessage('Serviço removido com sucesso!');
+      })
+      .catch((erro) => console.log(erro));
+  }
 
   function toggleProjectForm() {
     setShowProjectForm(!showProjectForm); // se ele está como false ele vira true, se está como true virá false
@@ -124,9 +186,20 @@ const Project = () => {
                 )}
               </div>
             </div>
-            <h2>serviços</h2>
+            <h2>Serviços</h2>
             <Container customClass="start">
-              <p>itens de serviços</p>
+              {services.length > 0 &&
+                services.map((service) => (
+                  <ServiceCard
+                    id={service.id}
+                    name={service.name}
+                    custo={service.custo}
+                    description={service.description}
+                    key={service.id}
+                    handleRemove={removeService}
+                  />
+                ))}
+              {services.length === 0 && <p>Não há serviços cadastrados.</p>}
             </Container>
           </Container>
         </div>

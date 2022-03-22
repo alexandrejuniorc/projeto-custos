@@ -1,19 +1,19 @@
-import React from 'react';
 import { useState } from 'react';
 import Input from '../form/Input';
 import SubmitButton from '../form/SubmitButton';
+
 import styles from '../project/ProjectForm.module.css';
-const ServiceForm = ({ handleSubmit, btnText, projectData }) => {
+
+function ServiceForm({ handleSubmit, btnText, projectData }) {
   const [service, setService] = useState({});
 
-  function submit(e) {
+  const submit = (e) => {
     e.preventDefault();
-    projectData.services.push(service); //vai ficar jogando serviços dentro do estado service
+    projectData.servicos.push(service);
     handleSubmit(projectData);
-  }
+  };
+
   function handleChange(e) {
-    e.preventDefault();
-    // pega o objeto atual com spread e transforma o e.target.name e o e.target.value em conteúdos do objeto
     setService({ ...service, [e.target.name]: e.target.value });
   }
 
@@ -35,14 +35,14 @@ const ServiceForm = ({ handleSubmit, btnText, projectData }) => {
       />
       <Input
         type="text"
-        text="Descrição do serviço"
+        text="Descrição do projeto"
         name="description"
-        placeholder="Descreva o serviço serviço"
+        placeholder="Descreva o serviço"
         handleOnChange={handleChange}
       />
       <SubmitButton text={btnText} />
     </form>
   );
-};
+}
 
 export default ServiceForm;
