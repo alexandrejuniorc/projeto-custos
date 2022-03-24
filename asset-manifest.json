@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/projeto-custos/static/css/main.b3a001ea.css",
+    "main.js": "/projeto-custos/static/js/main.623c7228.js",
+    "static/media/savings.svg": "/projeto-custos/static/media/savings.25a5174d3c0ce57522d68f3ba58b7407.svg",
+    "index.html": "/projeto-custos/index.html",
+    "static/media/loading.svg": "/projeto-custos/static/media/loading.5ff8599871e56a8a672f0861a01ef3bc.svg",
+    "main.b3a001ea.css.map": "/projeto-custos/static/css/main.b3a001ea.css.map",
+    "main.623c7228.js.map": "/projeto-custos/static/js/main.623c7228.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3a001ea.css",
+    "static/js/main.623c7228.js"
+  ]
+}
