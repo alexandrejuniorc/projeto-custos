@@ -19,7 +19,7 @@ function App() {
       <Container customClass="minHeight">
         <Routes>
           {/* pra acessar a home sempre que a rota tiver somente / */}
-          <Route path="/" element={<Home />} />
+          <Route path="" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/company" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
